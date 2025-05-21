@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Request Form</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <img src="qz1.png" alt="Quezelco 1 Logo">
+    <h1>Quezon 1 Electric Cooperative Inc.</h1>
+  </header>
+  <div class="container" id="officeSelection">
+    <h2>Select Your Office</h2>
+    <select id="officeDropdown">
+      <option value="" disabled selected>Select Office</option>
+      <option>Main Office</option>
+      <option>Gumaca</option>
+      <option>Atimonan</option>
+      <option>Lopez</option>
+      <option>Calauag</option>
+      <option>Guinyangan</option>
+      <option>Tagkawayan</option>
+      <option>Del Gallego</option>
+      <option>Macalelon</option>
+      <option>General Luna</option>
+      <option>Catanuan</option>
+      <option>Mulanay</option>
+      <option>San Francisco</option>
+      <option>San Andres</option>
+      <option>San Narciso</option>
+      <option>Buenavista</option>
+    </select>
+    <button onclick="proceedToLogin()">Proceed</button>
+    <button onclick="showAdminHistory()">Admin History</button>
+  </div>
+
+  <div class="sidebar" id="roleSidebar" style="display: none;">
+    <h2>Select Role</h2>
+    <ul>
+      <li onclick="showLogin('employee')">Employee</li>
+      <li onclick="showLogin('manager')">Manager</li>
+      <li onclick="showLogin('guard')">Guard</li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <div id="loginForm" class="form-container" style="display: none;">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button onclick="checkLogin()">Login</button>
+      <div class="return-btn"><button onclick="returnToOfficeSelection()">Return</button></div>
+    </div>
+
+    <div id="requestFormSection" class="form-container" style="display: none;">
+      <h2 id="officeTitle"></h2>
+      <h2>Request Form</h2>
+      <input type="text" id="name" placeholder="Name" required>
+      <select id="department">
+        <option>Finance</option><option>IT</option><option>Corporate Planning</option><option>Admin</option>
+        <option>Member Services</option><option>Audit</option><option>Engineering</option><option>Operations</option>
+      </select>
+      <textarea id="purpose" rows="2" placeholder="Purpose"></textarea>
+      <input type="text" id="destination" placeholder="Destination" required>
+      <input type="text" id="serviceVehicle" placeholder="Service Vehicle" required>
+      <input type="text" id="companions" placeholder="Name of Employees (Companions)" required>
+      <button onclick="submitRequest()">Submit</button>
+      <p id="submissionStatus" style="color: #00adb5;"></p>
+      <div class="return-btn"><button onclick="returnToPrevious()">Return</button></div>
+    </div>
+
+    <div id="managerSection" class="form-container" style="display: none;">
+      <h2 id="officeTitle"></h2>
+      <h2>Requests for Manager Approval</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th><th>Department</th><th>Purpose</th><th>Destination</th><th>Service Vehicle</th><th>Companions</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="managerList"></tbody>
+      </table>
+      <div class="return-btn"><button onclick="returnToPrevious()">Return</button></div>
+    </div>
+
+    <div id="guardRequests" class="form-container" style="display: none;">
+      <h2 id="officeTitle"></h2>
+      <h2>Approved and Rejected Requests</h2>
+      <table>
+        <thead><tr><th>Name</th><th>Department</th><th>Purpose</th><th>Destination</th><th>Service Vehicle</th><th>Companions</th><th>Time</th><th>Status</th><th>Departure</th><th>Arrival</th></tr></thead>
+        <tbody id="approvedList"></tbody>
+      </table>
+      <table>
+        <thead><tr><th>Name</th><th>Department</th><th>Purpose</th><th>Destination</th><th>Service Vehicle</th><th>Companions</th><th>Time</th><th>Status</th><th>Departure</th><th>Arrival</th></tr></thead>
+        <tbody id="rejectedList"></tbody>
+      </table>
+      <div class="return-btn"><button onclick="returnToPrevious()">Return</button></div>
+    </div>
+
+    <div id="adminHistorySection" class="form-container" style="display: none;">
+      <h2>Admin History</h2>
+      <select id="adminOfficeSelect">
+        <option value="" disabled selected>Select Office</option>
+        <option>Main Office</option>
+        <option>Gumaca</option>
+        <option>Atimonan</option>
+        <option>Lopez</option>
+        <option>Calauag</option>
+        <option>Guinyangan</option>
+        <option>Tagkawayan</option>
+        <option>Del Gallego</option>
+        <option>Macalelon</option>
+        <option>General Luna</option>
+        <option>Catanuan</option>
+        <option>Mulanay</option>
+        <option>San Francisco</option>
+        <option>San Andres</option>
+        <option>San Narciso</option>
+        <option>Buenavista</option>
+      </select>
+      <button onclick="displayAdminHistory()">Show History</button>
+      <div id="adminHistoryTable"></div>
+      <div class="return-btn"><button onclick="returnToPrevious()">Return</button></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
